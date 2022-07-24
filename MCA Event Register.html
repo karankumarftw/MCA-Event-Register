@@ -1,0 +1,222 @@
+
+<!-- saved from url=(0031)https://mcaevent-af35b.web.app/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>MCA Event Register</title>
+  <link rel="stylesheet" href="./MCA Event Register_files/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link href="./MCA Event Register_files/css" rel="stylesheet">
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, .final, input, select, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Trebuchet MS;
+      font-size: 16px;
+      color: #eee;
+      }
+      body {
+      background-color: corol;
+      background-size: cover;
+      }
+      h1, h2 {
+      text-transform: uppercase;
+      font-weight: 400;
+      }
+      h2 {
+      margin: 0 0 0 8px;
+      }
+      .main-block {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 25px;
+      background-image: url("https://images.pexels.com/photos/247676/pexels-photo-247676.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");
+      background-repeat: no-repeat;
+  background-size: cover;
+      
+      }
+      .left-part, .final {
+      padding: 25px;
+      }
+      .left-part {
+      text-align: center;
+      }
+      .fa-graduation-cap {
+      font-size: 72px;
+      }
+      .final {
+      background: rgba(0, 0, 0, 0.7); 
+      }
+      .title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      }
+      .info {
+      display: flex;
+      flex-direction: column;
+      }
+      input, select {
+      padding: 5px;
+      margin-bottom: 30px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid #eee;
+      }
+      input::placeholder {
+      color: #eee;
+      }
+      option:focus {
+      border: none;
+      }
+      option {
+      background: black; 
+      border: none;
+      }
+      .checkbox input {
+      margin: 0 10px 0 0;
+      vertical-align: middle;
+      }
+      .checkbox a {
+      color: #26a9e0;
+      }
+      .checkbox a:hover {
+      color: #85d6de;
+      }
+      .btn-item, button {
+      padding: 10px 5px;
+      margin-top: 20px;
+      border-radius: 5px; 
+      border: none;
+      background: #26a9e0; 
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 400;
+      color: #fff;
+      }
+      .btn-item {
+      display: inline-block;
+      margin: 20px 5px 0;
+      }
+      button {
+      width: 100%;
+      }
+      button:hover, .btn-item:hover {
+      background: #85d6de;
+      }
+      @media (min-width: 568px) {
+      html, body {
+      height: 100%;
+      }
+      .main-block {
+      flex-direction: row;
+      height: calc(100% - 50px);
+      }
+      .left-part, .final {
+      flex: 1;
+      height: auto;
+      }
+      }
+    </style>
+<script src="./MCA Event Register_files/js" async=""></script></head>
+<body>
+  <div class="main-block">
+<div class="left-part">
+  <i class="fas fa-graduation-cap"></i>
+        <h1>Department of MCA</h1>
+        <p>Register to our Events here</p>       
+</div>
+<div class="final">
+ <div class="title">
+  <i class="fas fa-pencil-alt"></i> 
+          <h2>Register here</h2>
+</div>
+<div class="info">
+	<input id="Namebox" type="text" placeholder="Name"><br>
+	<input id="Rollbox" type="text" placeholder="Register Number"><br>
+	<input id="Secbox" type="text" placeholder="Department"><br>
+  <label>Gender</label><br>
+	<select id="Genbox" placeholder="Gender">
+		<option value="Male">Male</option>
+		<option value="Female">Female</option>
+	</select><br>
+  <label>Select an Event</label><br>
+	<select id="Events">
+            <option value="Event 1" selected="">Event 1</option>
+            <option value="Event 2">Event 2</option>
+            <option value="Event 3">Event 3</option>
+            <option value="Event 4">Event 4</option>
+    </select>
+
+
+<button id="Insbtn">Register</button>
+</div>
+</div>
+</div>
+
+	<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.8/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyA7LhJwlnb260tnGqNEevr7_BgK64Y6DvM",
+    authDomain: "mcaevent-af35b.firebaseapp.com",
+    databaseURL: "https://mcaevent-af35b-default-rtdb.firebaseio.com",
+    projectId: "mcaevent-af35b",
+    storageBucket: "mcaevent-af35b.appspot.com",
+    messagingSenderId: "186073644932",
+    appId: "1:186073644932:web:0114b19a0637a746cde7d1",
+    measurementId: "G-L726CF9WQ4"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+  import {getDatabase, ref, set, child, update, remove}
+  from "https://www.gstatic.com/firebasejs/9.6.8/firebase-database.js";
+
+  const db = getDatabase();
+
+  var namebox = document.getElementById("Namebox");
+  var rollbox = document.getElementById("Rollbox");
+  var secbox = document.getElementById("Secbox");
+  var genbox = document.getElementById("Genbox");
+  var events = document.getElementById("Events");
+
+  var insBtn = document.getElementById("Insbtn");
+
+  function InsertData(){
+  	set(ref(db,"TheStudents/"+ rollbox.value),{
+  		NameofStd: namebox.value,
+  		RollNo: rollbox.value,
+  		Section: secbox.value,
+  		Gender: genbox.value,
+  		Events: events.value
+  	})
+  	.then(()=>{
+  		alert("Registered successfully");
+  	})
+  	.catch((error)=>{
+  		alert("Registeration Unsuccessfull");
+  	});
+  }
+
+  insBtn.addEventListener('click',InsertData);
+
+
+
+
+</script>
+
+
+
+</body></html>
